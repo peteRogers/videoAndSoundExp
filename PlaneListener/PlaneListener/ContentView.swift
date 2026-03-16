@@ -10,19 +10,19 @@ import SwiftUI
 struct ContentView: View {
     @State private var sharedState = SharedFlightAudioState()
     @State private var planeModel: PlaneModel
-    @State private var videoModel: AudioDrivenVideoModel
+    @State private var videoModel: AudioDrivenModel
 
     init() {
         let sharedState = SharedFlightAudioState()
         _sharedState = State(initialValue: sharedState)
         _planeModel = State(initialValue: PlaneModel(sharedState: sharedState))
-        _videoModel = State(initialValue: AudioDrivenVideoModel(sharedState: sharedState))
+        _videoModel = State(initialValue: AudioDrivenModel(sharedState: sharedState))
     }
 
     var body: some View {
         VStack {
             if let url = Bundle.main.url(forResource: "testSequence", withExtension: "mp4") {
-                AudioDrivenVideoView(model: videoModel, url: url)
+                AudioDrivenView(model: videoModel, url: url)
             } else {
                 Text("Movie file not found")
             }
