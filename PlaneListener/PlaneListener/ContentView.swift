@@ -21,7 +21,7 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            if let url = Bundle.main.url(forResource: "testSequence", withExtension: "mp4") {
+            if let url = Bundle.main.url(forResource: "tropBird", withExtension: "wav") {
                 AudioDrivenView(model: videoModel, url: url)
             } else {
                 Text("Movie file not found")
