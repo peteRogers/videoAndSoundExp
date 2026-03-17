@@ -73,15 +73,14 @@ final class PlaneModel {
 
             guard let httpResponse = response as? HTTPURLResponse else {
                 statusText = "Error: Invalid response"
-                sharedState.distanceMeters = 0
-                sharedState.normalizedDistance = 0
+                
+                sharedState.setNilState()
                 return
             }
 
             guard (200...299).contains(httpResponse.statusCode) else {
                 statusText = "HTTP \(httpResponse.statusCode)"
-                sharedState.distanceMeters = 0
-                sharedState.normalizedDistance = 0
+                sharedState.setNilState()
                 return
             }
 
@@ -108,11 +107,14 @@ final class PlaneModel {
             statusText = closest == nil ? "No aircraft with position found" : "OK"
 
             if let distance = closest?.distance {
+                sharedState.nilState = false
                 sharedState.distanceMeters = distance
 
                 let maxDistance = 10_000.0
                 let clamped = min(max(distance, 0), maxDistance)
                 sharedState.normalizedDistance = 1.0 - (clamped / maxDistance)
+                sharedState.speed = selected?.gs ?? 0.0
+                sharedState.height = selected?.alt_baro ?? 0.0
             } else {
                 sharedState.distanceMeters = 0
                 sharedState.normalizedDistance = 0

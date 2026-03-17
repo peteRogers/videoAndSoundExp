@@ -8,34 +8,35 @@
 import SwiftUI
 
 struct AudioDrivenView: View {
-    @State var model: AudioDrivenModel
+    @State var model: AudioDrivenModel_Generative
 
-    let url: URL
+   
 
     var body: some View {
         VStack(spacing: 16) {
-            Text(model.statusText)
-                .font(.headline)
-
-            HStack(spacing: 12) {
-                Button("Play") {
-                    model.play()
-                }
-
-                Button("Pause") {
-                    model.pause()
-                }
-
-                Button("Stop") {
-                    model.stop()
-                }
-            }
+//            Text(model.statusText)
+//                .font(.headline)
+//
+//            HStack(spacing: 12) {
+//                Button("Play") {
+//                    model.play()
+//                }
+//
+//                Button("Pause") {
+//                    model.pause()
+//                }
+//
+//                Button("Stop") {
+//                    model.stop()
+//                }
+//            }
         }
         .padding()
         .task {
-            await model.load(url: url)
+            //await model.load(url: url)
             model.play()
         }
+        
         .onDisappear {
             model.stop()
         }
