@@ -27,7 +27,7 @@ final class AudioDrivenModel_Generative {
         mixer = Mixer()
       
         osc = Oscillator()
-        osc.start()
+       // osc.start()
         mixer.addInput(osc)
        
         engine.output = mixer
