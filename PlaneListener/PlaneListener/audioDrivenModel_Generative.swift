@@ -19,13 +19,13 @@ import AudioKitEX
 final class AudioDrivenModel_Generative {
     private let engine = AudioEngine()
     private var mixer:Mixer
-    private var p:PluckedString
+   
     private let sharedState: SharedFlightAudioState
     private let osc: Oscillator
     init(sharedState: SharedFlightAudioState) {
         self.sharedState = sharedState
         mixer = Mixer()
-        p = PluckedString()
+      
         osc = Oscillator()
         osc.start()
         mixer.addInput(osc)
@@ -37,7 +37,7 @@ final class AudioDrivenModel_Generative {
         }catch{
             
         }
-        p.trigger()
+       
     }
     
     func play(){
